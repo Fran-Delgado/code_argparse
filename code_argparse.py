@@ -1,27 +1,25 @@
 import argparse
 import sys
 
-#######################################################################################
-# Gestión de una lista variable de parámetros de entrada:
-#######################################################################################
-#Captura de parámetros con argparse
+NUM_PARAMETROS_ENTRADA=3
 
-NUM_PARAMETROS_ENTRADA=0
+PARAMS_VALIDOS=(("A","B","C"),          # VALORES PERMITIDOS PARA PARAM1
+                ("AA","BB","CC"),       # VALORES PERMITIDOS PARA PARAM2   
+                ("AAA","BBB","CCC"))    # VALORES PERMITIDOS PARA PARAM3
 
+######################################################################################
+# Validación de parámetros de entrada en el caso de que el script los necesite 
+#######################################################################################
 # Función para validar que los parámetros están dentro de los valores previstos
 # Atención args.parametros es una lista y evidentemente los elementos empiezan por el orden 0 por eso restamos 1
-def control_parametros(orden_parametro,lista_ok):
-    if (args.parametros[orden_parametro-1] not in lista_ok):
+def control_parametros(orden_parametro,lista_ok,lista_parametros_script):
+    if (lista_parametros_script[orden_parametro-1] not in lista_ok):
             print("Error en parámetro ",orden_parametro," : ")  
             print(" --> Valores posibles:", lista_ok)
             print("RC = ",orden_parametro)
             sys.exit(orden_parametro)
 
-if NUM_PARAMETROS_ENTRADA == 0:
-    print("soy un script sin parámetros de entrada")
-    pass
-else: 
-    print("soy un script con parámetros de entrada")
+def validar_parametros_entrada():
     parser = argparse.ArgumentParser(add_help=False)
 
     parser.add_argument('-v', '--version', action='version',
@@ -31,12 +29,7 @@ else:
     parser.add_argument('parametros', type=str, nargs='+')
 
     args = parser.parse_args()
-    # Listas de valores válidos para los parámetros 
-
-    param_1_valido=("A","B","C")
-    param_2_valido=("AA","BB","CC")
-    param_3_valido=("AAA","BBB","CCC")
-
+ 
     # Controlamos que como mínimo hayan 3 parámetros, aunque solo validamos los tres primeros. 
     if len(args.parametros) < NUM_PARAMETROS_ENTRADA: 
         print("Error : Mínimo se han de informar",NUM_PARAMETROS_ENTRADA,"parámetros")
@@ -45,8 +38,17 @@ else:
         sys.exit(retcode)
     else: 
         for parametro in args.parametros:
-            control_parametros(1,param_1_valido)
-            control_parametros(2,param_2_valido)
-            control_parametros(3,param_3_valido)
-        
+            for i in range(len(PARAMS_VALIDOS)):
+                control_parametros(i+1,PARAMS_VALIDOS[i],args.parametros)
 
+######################################################################################
+# PROGRAMA PRINCIPAL 
+#######################################################################################
+if NUM_PARAMETROS_ENTRADA == 0:
+    print("AVISO : Script sin parámetros de entrada")
+    pass
+else: 
+    print("AVISO : Script con",NUM_PARAMETROS_ENTRADA,"parámetros de entrada")
+    validar_parametros_entrada()
+
+    
