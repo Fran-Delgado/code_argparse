@@ -1,5 +1,6 @@
 import argparse
 import sys
+import settings
 
 NUM_PARAMS_ENTRADA=5
 
@@ -63,14 +64,26 @@ def validar_parametros_entrada():
 ######################################################################################
 # PROGRAMA PRINCIPAL 
 #######################################################################################
+# Recuperar settings.
+settings.init_settings()
+settings.print_settings()
+
+usuario     = settings.usuario
+path_base   = settings.path_base
+host        = settings.host
+hora_inicio = settings.hora
+
 # Validar parámetros de entrada al script.
 if NUM_PARAMS_ENTRADA == 0:
     print("AVISO : Script sin parámetros de entrada")
     pass
 else: 
     parms_val_ok,resto_parms=validar_parametros_entrada()
-    print(" Validación correcta de parámetros de entrada")
-    print("Parámetros validados = ",parms_val_ok)
-    print("Parámetros no validados = ",resto_parms)
+    print("Validación correcta de parámetros de entrada")
+    print("- Parámetros validados = ",parms_val_ok)
+    print("- Parámetros no validados = ",resto_parms)
+
+
+
 
      
