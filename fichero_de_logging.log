@@ -1,0 +1,9 @@
+ 2021-11-02 09:47:01,391 -  DEBUG - ----------------------------------------------------------------------------------------------------------
+ 2021-11-02 09:47:01,391 -  DEBUG -  Variables de entorno : 
+ 2021-11-02 09:47:01,392 -  DEBUG - --> Host :             CPX-17N7SWIOIMG
+ 2021-11-02 09:47:01,392 -  DEBUG - --> Usuario :          f.delgadomartinez
+ 2021-11-02 09:47:01,392 -  DEBUG - --> Directorio :       C:\Users\f.delgadomartinez\Desktop\INVENTOS PYTHON\parametros
+ 2021-11-02 09:47:01,392 -  DEBUG - --> Hora inicio :      2021-11-02 09:47:01.389973
+ 2021-11-02 09:47:01,392 -  DEBUG - --> Script settings :  settings.py
+ 2021-11-02 09:47:01,392 -  DEBUG - ----------------------------------------------------------------------------------------------------------
+ 2021-11-02 09:47:01,394 -  ERROR - code_argparse.py Error : Mínimo se han de informar5parámetros. RC = 66
